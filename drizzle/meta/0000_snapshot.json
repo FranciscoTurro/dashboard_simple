@@ -1,0 +1,143 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "id": "2a178c90-fe62-427c-a63a-f152aa9d1f88",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "companies": {
+      "name": "companies",
+      "schema": "",
+      "columns": {
+        "company_id": {
+          "name": "company_id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "company_name": {
+          "name": "company_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "companies_company_name_unique": {
+          "name": "companies_company_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "company_name"
+          ]
+        }
+      }
+    },
+    "company_areas": {
+      "name": "company_areas",
+      "schema": "",
+      "columns": {
+        "area_id": {
+          "name": "area_id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "company_id": {
+          "name": "company_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "area_name": {
+          "name": "area_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "current_value": {
+          "name": "current_value",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "goal_value": {
+          "name": "goal_value",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "company_areas_company_id_companies_company_id_fk": {
+          "name": "company_areas_company_id_companies_company_id_fk",
+          "tableFrom": "company_areas",
+          "tableTo": "companies",
+          "columnsFrom": [
+            "company_id"
+          ],
+          "columnsTo": [
+            "company_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "company_areas_area_name_unique": {
+          "name": "company_areas_area_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "area_name"
+          ]
+        }
+      }
+    },
+    "users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "user_id": {
+          "name": "user_id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_name": {
+          "name": "user_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "users_user_name_unique": {
+          "name": "users_user_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "user_name"
+          ]
+        }
+      }
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
