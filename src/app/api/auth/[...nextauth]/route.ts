@@ -1,11 +1,11 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { db } from '../../../../db';
-import { users } from '../../../../db/schema';
+import { db } from '../../../../lib/db';
+import { users } from '../../../../lib/db/schema';
 import { eq } from 'drizzle-orm';
 import argon2 from 'argon2';
 
-export const authOptions = {
+export const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -32,8 +32,6 @@ export const authOptions = {
       },
     }),
   ],
-};
-
-export const handler = NextAuth(authOptions);
+});
 
 export { handler as GET, handler as POST };

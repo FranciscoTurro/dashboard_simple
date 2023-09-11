@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { trpc } from '../app/_trpc/client';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { Button } from './Button';
+import { Input } from './Input';
 
 const AuthButton = () => {
   const { data: sessionData } = useSession();
@@ -10,18 +12,14 @@ const AuthButton = () => {
     return (
       <div>
         <h1>{sessionData.user?.name}</h1>
-        <button className="bg-red-900" onClick={() => signOut()}>
-          Sign OUT
-        </button>
+        <Button onClick={() => signOut()}>Sign OUT</Button>
       </div>
     );
   else
     return (
       <div>
         <h1>not signed in chief</h1>
-        <button className="bg-red-900" onClick={() => signIn()}>
-          Sign IN
-        </button>
+        <Button onClick={() => signIn()}>Sign IN</Button>
       </div>
     );
 };
@@ -36,16 +34,16 @@ export const Test = () => {
   if (!data) return <div>error</div>;
   return (
     <div>
+      <AuthButton />
       <div className="flex gap-4">
-        <AuthButton />
-        <input
+        <Input
           type="text"
           className="bg-black text-white"
           onChange={(e) => {
             setUser_name(e.target.value);
           }}
         />
-        <input
+        <Input
           type="text"
           className="bg-black text-white"
           onChange={(e) => {
@@ -53,14 +51,13 @@ export const Test = () => {
           }}
         />
       </div>
-      <button
-        className="bg-red-500"
+      <Button
         onClick={async () => {
           addUser.mutate({ user_name, password });
         }}
       >
         Add user
-      </button>
+      </Button>
       <div>{JSON.stringify(data)}</div>
     </div>
   );
