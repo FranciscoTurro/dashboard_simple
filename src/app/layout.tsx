@@ -8,6 +8,12 @@ import { redirect } from 'next/navigation';
 export const metadata: Metadata = {
   title: 'Tablero de admin',
   description: 'Tablero',
+  icons: {
+    icon: ['/favicon.ico?v=4'],
+    apple: ['/apple-touch-icon.png?v=4'],
+    shortcut: ['/apple-touch-icon.png'],
+  },
+  manifest: '/site.webmanifest',
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
