@@ -6,6 +6,7 @@ import { getServerSession } from 'next-auth';
 
 export const createContext = async () => {
   const session = await getServerSession();
+  if (!session) throw new TRPCError({ code: 'UNAUTHORIZED' });
   return { session };
 };
 
@@ -15,7 +16,7 @@ export const router = t.router;
 export const publicProcedure = t.procedure;
 
 const enforceUserAuth = t.middleware(({ ctx, next }) => {
-  if (!ctx.session?.user) throw new TRPCError({ code: 'UNAUTHORIZED' });
+  if (!ctx.session.user) throw new TRPCError({ code: 'UNAUTHORIZED' });
   return next({
     ctx: {
       session: ctx.session,

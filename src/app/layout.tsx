@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
-import Provider from './_trpc/Provider';
-import SessionProvider from '../components/SessionProvider';
+import Provider from './trpc/Provider';
+import SessionProvider from '../components/session/SessionProvider';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 

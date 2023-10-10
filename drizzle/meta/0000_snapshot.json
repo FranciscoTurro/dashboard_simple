@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "2a178c90-fe62-427c-a63a-f152aa9d1f88",
+  "id": "da3e8bdd-220b-486c-9c84-8d945861a18f",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "companies": {
@@ -95,6 +95,54 @@
           ]
         }
       }
+    },
+    "monthly_goals": {
+      "name": "monthly_goals",
+      "schema": "",
+      "columns": {
+        "goal_id": {
+          "name": "goal_id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "area_id": {
+          "name": "area_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "month": {
+          "name": "month",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "goal_value": {
+          "name": "goal_value",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "monthly_goals_area_id_company_areas_area_id_fk": {
+          "name": "monthly_goals_area_id_company_areas_area_id_fk",
+          "tableFrom": "monthly_goals",
+          "tableTo": "company_areas",
+          "columnsFrom": [
+            "area_id"
+          ],
+          "columnsTo": [
+            "area_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
     },
     "users": {
       "name": "users",
