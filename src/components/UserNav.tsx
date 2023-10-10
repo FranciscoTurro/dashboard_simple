@@ -1,5 +1,4 @@
 'use client';
-
 import { Avatar, AvatarFallback, AvatarImage } from './ui/Avatar';
 import { Button } from './ui/Button';
 import {
@@ -8,9 +7,10 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from './ui/DropdownMenu';
 import { useSession, signOut } from 'next-auth/react';
-import { IconUserCircle } from '@tabler/icons-react';
+import { getInitials } from '@/lib/utils/utils';
 
 export const UserNav = () => {
   const { data: sessionData } = useSession();
@@ -19,8 +19,10 @@ export const UserNav = () => {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src="" alt="Avatar image" />
-            <AvatarFallback>AS</AvatarFallback>
+            <AvatarImage src="/img/04.png" alt="Avatar image" />
+            <AvatarFallback>
+              {getInitials(sessionData?.user?.name)}
+            </AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -32,12 +34,13 @@ export const UserNav = () => {
             </p>
           </div>
         </DropdownMenuLabel>
+        <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => {
             signOut();
           }}
         >
-          Log out
+          Cerrar sesion
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
