@@ -4,6 +4,7 @@ import Provider from './trpc/Provider';
 import SessionProvider from '../components/session/SessionProvider';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
+import { NavBar } from '../components/NavBar';
 
 export const metadata: Metadata = {
   title: 'Tablero de admin',
@@ -26,7 +27,10 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
     <html lang="en">
       <body>
         <Provider>
-          <SessionProvider session={session}>{children}</SessionProvider>
+          <SessionProvider session={session}>
+            <NavBar />
+            {children}
+          </SessionProvider>
         </Provider>
       </body>
     </html>

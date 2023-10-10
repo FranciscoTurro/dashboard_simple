@@ -1,3 +1,10 @@
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export const cn = (...inputs: ClassValue[]) => {
+  return twMerge(clsx(inputs));
+};
+
 export const getInitials = (inputString: string | null | undefined): string => {
   if (inputString == null || inputString == undefined) return 'JD';
 

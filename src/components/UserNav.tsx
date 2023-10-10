@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
 } from './ui/DropdownMenu';
 import { useSession, signOut } from 'next-auth/react';
-import { getInitials } from '@/lib/utils/utils';
+import { getInitials } from '@/utils/utils';
 
 export const UserNav = () => {
   const { data: sessionData } = useSession();
@@ -19,7 +19,7 @@ export const UserNav = () => {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src="/img/04.png" alt="Avatar image" />
+            <AvatarImage src="/img/user.png" alt="Avatar image" />
             <AvatarFallback>
               {getInitials(sessionData?.user?.name)}
             </AvatarFallback>
