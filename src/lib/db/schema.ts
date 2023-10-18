@@ -1,4 +1,5 @@
 import { integer, pgTable, serial, text } from 'drizzle-orm/pg-core';
+import { string } from 'zod';
 
 export const users = pgTable('users', {
   user_id: serial('user_id').primaryKey(),
@@ -6,22 +7,20 @@ export const users = pgTable('users', {
   password: text('password'),
 });
 
-export const companies = pgTable('companies', {
-  company_id: serial('company_id').primaryKey(),
-  company_name: text('company_name').unique(),
+export const sales = pgTable('sales', {
+  month_id: integer('month_id').primaryKey(),
+  month_name: text('month_name'),
+  value: integer('value'),
 });
 
-export const company_areas = pgTable('company_areas', {
-  area_id: serial('area_id').primaryKey(),
-  company_id: integer('company_id').references(() => companies.company_id),
-  area_name: text('area_name').unique(),
-  current_value: integer('current_value'), //sum of all month goals
-  goal_value: integer('goal_value'), //hard coded
+export const prod = pgTable('prod', {
+  month_id: integer('month_id').primaryKey(),
+  month_name: text('month_name'),
+  value: integer('value'),
 });
 
-export const monthly_goals = pgTable('monthly_goals', {
-  goal_id: serial('goal_id').primaryKey(),
-  area_id: integer('area_id').references(() => company_areas.area_id),
-  month: integer('month'), //can i set min 1 and max 12?
-  goal_value: integer('goal_value'),
+export const attention = pgTable('attention', {
+  month_id: integer('month_id').primaryKey(),
+  month_name: text('month_name'),
+  value: integer('value'),
 });

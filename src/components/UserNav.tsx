@@ -14,6 +14,7 @@ import { getInitials } from '@/utils/utils';
 
 export const UserNav = () => {
   const { data: sessionData } = useSession();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

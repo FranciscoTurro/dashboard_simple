@@ -20,3 +20,10 @@ export const getInitials = (inputString: string | null | undefined): string => {
 
   return initials;
 };
+
+export const calculatePercentage = (number: number): number => {
+  const maximum = 30000;
+
+  const percentage = (number / maximum) * 100;
+  return parseFloat(percentage.toFixed(0));
+};

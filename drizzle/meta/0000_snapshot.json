@@ -1,22 +1,28 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "da3e8bdd-220b-486c-9c84-8d945861a18f",
+  "id": "8444ff4b-aad9-45a4-9706-3b44f15fa299",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
-    "companies": {
-      "name": "companies",
+    "attention": {
+      "name": "attention",
       "schema": "",
       "columns": {
-        "company_id": {
-          "name": "company_id",
-          "type": "serial",
+        "month_id": {
+          "name": "month_id",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true
         },
-        "company_name": {
-          "name": "company_name",
+        "month_name": {
+          "name": "month_name",
           "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "value": {
+          "name": "value",
+          "type": "integer",
           "primaryKey": false,
           "notNull": false
         }
@@ -24,123 +30,61 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "companies_company_name_unique": {
-          "name": "companies_company_name_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "company_name"
-          ]
-        }
-      }
+      "uniqueConstraints": {}
     },
-    "company_areas": {
-      "name": "company_areas",
+    "prod": {
+      "name": "prod",
       "schema": "",
       "columns": {
-        "area_id": {
-          "name": "area_id",
-          "type": "serial",
+        "month_id": {
+          "name": "month_id",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true
         },
-        "company_id": {
-          "name": "company_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "area_name": {
-          "name": "area_name",
+        "month_name": {
+          "name": "month_name",
           "type": "text",
           "primaryKey": false,
           "notNull": false
         },
-        "current_value": {
-          "name": "current_value",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "goal_value": {
-          "name": "goal_value",
+        "value": {
+          "name": "value",
           "type": "integer",
           "primaryKey": false,
           "notNull": false
         }
       },
       "indexes": {},
-      "foreignKeys": {
-        "company_areas_company_id_companies_company_id_fk": {
-          "name": "company_areas_company_id_companies_company_id_fk",
-          "tableFrom": "company_areas",
-          "tableTo": "companies",
-          "columnsFrom": [
-            "company_id"
-          ],
-          "columnsTo": [
-            "company_id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "company_areas_area_name_unique": {
-          "name": "company_areas_area_name_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "area_name"
-          ]
-        }
-      }
+      "uniqueConstraints": {}
     },
-    "monthly_goals": {
-      "name": "monthly_goals",
+    "sales": {
+      "name": "sales",
       "schema": "",
       "columns": {
-        "goal_id": {
-          "name": "goal_id",
-          "type": "serial",
+        "month_id": {
+          "name": "month_id",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true
         },
-        "area_id": {
-          "name": "area_id",
-          "type": "integer",
+        "month_name": {
+          "name": "month_name",
+          "type": "text",
           "primaryKey": false,
           "notNull": false
         },
-        "month": {
-          "name": "month",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "goal_value": {
-          "name": "goal_value",
+        "value": {
+          "name": "value",
           "type": "integer",
           "primaryKey": false,
           "notNull": false
         }
       },
       "indexes": {},
-      "foreignKeys": {
-        "monthly_goals_area_id_company_areas_area_id_fk": {
-          "name": "monthly_goals_area_id_company_areas_area_id_fk",
-          "tableFrom": "monthly_goals",
-          "tableTo": "company_areas",
-          "columnsFrom": [
-            "area_id"
-          ],
-          "columnsTo": [
-            "area_id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
