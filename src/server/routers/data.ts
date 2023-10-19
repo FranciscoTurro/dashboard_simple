@@ -1,6 +1,4 @@
-import { z } from 'zod';
 import { db } from '../../lib/db';
-import { users, attention, prod, sales } from '../../lib/db/schema';
 import { protectedProcedure, router } from '../trpc';
 
 export const dataRouter = router({
@@ -8,25 +6,15 @@ export const dataRouter = router({
     return db.query.prod.findMany();
   }),
   getCompanyGoals: protectedProcedure.query(async () => {
-    let prodGoal = 0;
-    const prodData = await db.query.prod.findMany();
-    prodData.map((month) => {
-      if (month.value) prodGoal = prodGoal + month.value;
-    });
-    let salesGoal = 0;
-    const salesData = await db.query.sales.findMany();
-    salesData.map((sale) => {
-      if (sale.value) salesGoal = salesGoal + sale.value;
-    });
-    let attentionGoal = 0;
-    const attentionValue = await db.query.attention.findMany();
-    attentionValue.map((attention) => {
-      if (attention.value) attentionGoal = attentionGoal + attention.value;
-    });
+    const databases = [db.query.prod, db.query.sales, db.query.attention];
 
-    const total = prodGoal + attentionGoal + salesGoal;
-    return total;
+    const total = await Promise.all(
+      databases.map(async (query) => {
+        const data = await query.findMany();
+        return data.reduce((sum, item) => sum + (item.value || 0), 0);
+      })
+    );
+
+    return total.reduce((sum, value) => sum + value, 0);
   }),
 });
-
-//objetivos de la empresa = objetivos de las tres areas juntos

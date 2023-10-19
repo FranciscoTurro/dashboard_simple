@@ -9,6 +9,6 @@ export const Company = () => {
   const percentage = calculatePercentage(data);
 
   if (percentage < 50) return <div>DESASTRE</div>;
-  if (percentage > 50 && percentage < 80) return <div>bien</div>;
+  if (percentage > 50 && percentage < 80) return <div>bien + {data}</div>;
   if (percentage > 80) return <div>ESPECTACULO</div>;
 };
