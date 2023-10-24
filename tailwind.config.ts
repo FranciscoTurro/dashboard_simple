@@ -16,6 +16,12 @@ const config: Config = {
     },
     extend: {
       colors: {
+        scheme_background: '#0f1729',
+        scheme_highlight: '#2c2e53',
+        scheme_buttons: '#21273f',
+        scheme_borders: '#414365',
+        scheme_text_highlight: '#c3b4fc',
+        scheme_text_titles: '#e8ddff',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

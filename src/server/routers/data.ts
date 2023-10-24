@@ -4,7 +4,7 @@ import { protectedProcedure, router } from '../trpc';
 export const dataRouter = router({
   getProdData: protectedProcedure.query(async () => {
     return db.query.prod.findMany();
-  }),
+  }), //cambia esto, que devuelva solamente un numero, el porcentaje
   getCompanyGoals: protectedProcedure.query(async () => {
     const databases = [db.query.prod, db.query.sales, db.query.attention];
 

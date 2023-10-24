@@ -5,6 +5,7 @@ import SessionProvider from '../components/session/SessionProvider';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { NavBar } from '../components/NavBar';
+import 'react-circular-progressbar/dist/styles.css';
 
 export const metadata: Metadata = {
   title: 'Tablero de admin',

@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { MAX_COMPANY } from '../types/variables';
+import { MAX_COMPANY } from '../types/variables.d';
 
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
