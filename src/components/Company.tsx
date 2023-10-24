@@ -1,14 +1,18 @@
 'use client';
 import { trpc } from '../app/trpc/client';
 import { calculatePercentage } from '../utils/utils';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 export const Company = () => {
   const { data } = trpc.data.getCompanyGoals.useQuery();
-  if (!data) return <div>ERROR</div>;
+  if (!data) return <div>ERROR</div>; //work on nextjs13 error handling
 
   const percentage = calculatePercentage(data);
 
-  if (percentage < 50) return <div>DESASTRE</div>;
-  if (percentage > 50 && percentage < 80) return <div>bien + {data}</div>;
-  if (percentage > 80) return <div>ESPECTACULO</div>;
+  return (
+    <div className="w-48">
+      <CircularProgressbar text={`${percentage}%`} value={percentage} />
+    </div>
+  );
 };
