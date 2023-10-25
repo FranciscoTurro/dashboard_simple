@@ -9,8 +9,8 @@ export const NavBar = () => {
           <Link className="hover:text-scheme_text_highlight" href="/">
             <p className="text-2xl font-bold">LOGO</p>
           </Link>
-          <Link className="hover:text-scheme_text_highlight" href="">
-            General
+          <Link className="hover:text-scheme_text_highlight" href="/areas">
+            Areas
           </Link>
           <Link className="hover:text-scheme_text_highlight" href="">
             Produccion

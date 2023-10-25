@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { MAX_COMPANY } from '../types/variables.d';
+import { MAX_AREA, MAX_COMPANY, MAX_MONTH, TYPE } from '../types/variables.d';
 
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
@@ -22,7 +22,11 @@ export const getInitials = (inputString: string | null | undefined): string => {
   return initials;
 };
 
-export const calculatePercentage = (number: number): number => {
-  const percentage = (number / MAX_COMPANY) * 100;
+export const calculatePercentage = (number: number, type: TYPE): number => {
+  let typeMax: number;
+  if (type === 'COMPANY') typeMax = MAX_COMPANY;
+  if (type === 'AREA') typeMax = MAX_AREA;
+  if (type === 'MONTH') typeMax = MAX_MONTH;
+  const percentage = (number / typeMax!) * 100;
   return parseFloat(percentage.toFixed(0));
 };

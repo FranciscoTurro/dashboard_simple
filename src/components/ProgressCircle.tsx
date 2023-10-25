@@ -1,21 +1,30 @@
 'use client';
-import { trpc } from '../app/trpc/client';
 import { calculatePercentage } from '../utils/utils';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import { LoadingSpinner } from './ui/LoadingSpinner';
-import { COMPANY_NAME, MAX_COMPANY } from '../types/variables.d';
-import { Button } from './ui/Button';
+import { MAX_AREA, MAX_COMPANY, MAX_MONTH, TYPE } from '../types/variables.d';
 
-export const Company = () => {
-  const { data: goalsData } = trpc.data.getCompanyGoals.useQuery();
-  if (!goalsData) return <LoadingSpinner />;
+interface ProgressCircleProps {
+  name: string;
+  goalsData: number;
+  type: TYPE;
+}
 
-  const percentage = calculatePercentage(goalsData);
+export const ProgressCircle: React.FC<ProgressCircleProps> = ({
+  goalsData,
+  name,
+  type,
+}) => {
+  const percentage = calculatePercentage(goalsData, type);
+
+  let typeMax: number = 0;
+  if (type === 'COMPANY') typeMax = MAX_COMPANY;
+  if (type === 'AREA') typeMax = MAX_AREA;
+  if (type === 'MONTH') typeMax = MAX_MONTH;
 
   return (
     <div className="w-full flex flex-col items-center gap-6 pt-14">
       <div className="text-2xl">
-        <p>{COMPANY_NAME}</p>
+        <p>{name}</p>
       </div>
       <div className="w-48">
         <CircularProgressbar
@@ -30,11 +39,8 @@ export const Company = () => {
       </div>
       <div className="text-2xl">
         <p>
-          Estado de los objetivos: {goalsData} / {MAX_COMPANY}
+          Estado de los objetivos: {goalsData} / {typeMax}
         </p>
-      </div>
-      <div className="flex gap-4">
-        <Button>Desglose</Button>
       </div>
     </div>
   );
