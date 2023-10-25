@@ -2,18 +2,24 @@
 import { calculatePercentage } from '../utils/utils';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { MAX_AREA, MAX_COMPANY, MAX_MONTH, TYPE } from '../types/variables.d';
+import { Button } from './ui/Button';
+import { useRouter } from 'next/navigation';
 
 interface ProgressCircleProps {
   name: string;
   goalsData: number;
   type: TYPE;
+  routing?: string;
 }
 
 export const ProgressCircle: React.FC<ProgressCircleProps> = ({
   goalsData,
   name,
   type,
+  routing,
 }) => {
+  const router = useRouter();
+
   const percentage = calculatePercentage(goalsData, type);
 
   let typeMax: number = 0;
@@ -42,6 +48,9 @@ export const ProgressCircle: React.FC<ProgressCircleProps> = ({
           Estado de los objetivos: {goalsData} / {typeMax}
         </p>
       </div>
+      {routing ? (
+        <Button onClick={() => router.push(routing)}>Desglose</Button>
+      ) : null}
     </div>
   );
 };
