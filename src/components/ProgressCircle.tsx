@@ -28,7 +28,7 @@ export const ProgressCircle: React.FC<ProgressCircleProps> = ({
   if (type === 'MONTH') typeMax = MAX_MONTH;
 
   return (
-    <div className="w-full flex flex-col items-center gap-6 pt-14">
+    <div className="flex flex-col items-center gap-6 pt-14">
       <div className="text-2xl">
         <p>{name}</p>
       </div>

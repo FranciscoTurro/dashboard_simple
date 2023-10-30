@@ -8,12 +8,14 @@ const Home = () => {
   const { data: goalsData } = trpc.data.getCompanyGoals.useQuery();
   if (!goalsData) return <LoadingSpinner />;
   return (
-    <ProgressCircle
-      routing="/areas"
-      type="COMPANY"
-      name={COMPANY_NAME}
-      goalsData={goalsData}
-    />
+    <div className="pt-10">
+      <ProgressCircle
+        routing="/areas"
+        type="COMPANY"
+        name={COMPANY_NAME}
+        goalsData={goalsData}
+      />
+    </div>
   );
 };
 

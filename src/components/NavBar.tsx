@@ -12,13 +12,22 @@ export const NavBar = () => {
           <Link className="hover:text-scheme_text_highlight" href="/areas">
             Areas
           </Link>
-          <Link className="hover:text-scheme_text_highlight" href="">
+          <Link
+            className="hover:text-scheme_text_highlight"
+            href="/areas/production"
+          >
             Produccion
           </Link>
-          <Link className="hover:text-scheme_text_highlight" href="">
+          <Link
+            className="hover:text-scheme_text_highlight"
+            href="/areas/sales"
+          >
             Ventas
           </Link>
-          <Link className="hover:text-scheme_text_highlight" href="">
+          <Link
+            className="hover:text-scheme_text_highlight"
+            href="/areas/attention"
+          >
             Atencion
           </Link>
         </div>
