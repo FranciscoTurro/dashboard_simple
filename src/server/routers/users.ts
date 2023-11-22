@@ -1,14 +1,14 @@
 import { z } from 'zod';
 import { db } from '../../lib/db';
 import { users } from '../../lib/db/schema';
-import { protectedProcedure, router } from '../trpc';
+import { protectedProcedure, publicProcedure, router } from '../trpc';
 import argon2 from 'argon2';
 
 export const usersRouter = router({
   getUsers: protectedProcedure.query(async () => {
     return await db.select().from(users);
   }),
-  addUser: protectedProcedure
+  addUser: publicProcedure
     .input(
       z.object({
         user_name: z.string(),

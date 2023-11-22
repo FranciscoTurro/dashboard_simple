@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = await getServerSession();
-  if (!session || !session.user) redirect('/api/auth/signin');
+  // if (!session || !session.user) redirect('/api/auth/signin');
   //esto es un tablero de admin, es comportamiento correcto que no se pueda ver NADA a menos
   //que el usuario este autenticado
 
